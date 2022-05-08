@@ -1,0 +1,119 @@
+// custom variable values
+
+// import the functions & variables
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+
+// custom theme colours
+$custom-theme-colors: ();
+
+@media (max-width: 575.98px) { 
+  #marquee {
+    font-size: 15px !important;
+  }
+  #heading {
+    font-size: 20px !important;
+  }
+  #whyusimg {
+    height: 50px !important;
+    width: 50px !important;
+  }
+  h3 {
+    font-size: 15px !important;
+  }
+  #whyuspara {
+    font-size: 10px !important;
+  }
+  #aboutuspara {
+    font-size: 15px !important;
+  }
+  #ourservices {
+    display: inline !important;
+  }
+  #carouselExampleDark {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #reviewimg {
+    height: 50px !important;
+    width: 50px !important;
+  }
+  #reviewpara {
+    font-size: 12px !important;
+    margin: 10px 20px !important;
+  }
+  .footer > div {
+    display: inline !important;
+    width: 100% !important;
+  }
+  .midbar li {
+    font-size: 10px;
+  }
+  .midbar .btn {
+    font-size: 10px;
+  }
+}
+.card:hover {
+  outline: 5px solid #0b5ed7 !important;
+}
+.col a:hover {
+  text-decoration: underline !important;
+  color: white !important;
+}
+#btn-back-to-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: none;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .footer > div {
+    display: inline !important;
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 426px) {
+  .footer > div {
+    display: inline !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 376px) {
+  .header-img {
+    height: 40px !important;
+    width: 40px !important;
+  }
+  .header-text {
+    font-size: 15px !important;
+  }
+}
+
+// merge the maps to add new theme colors
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+// Start copying at the line below
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge(
+  $theme-colors-rgb,
+  (
+    "black": to-rgb($black),
+    "white": to-rgb($white),
+    "body": to-rgb($body-color),
+  )
+);
+
+$utilities-text-colors: map-loop(
+  $utilities-colors,
+  rgba-css-var,
+  "$key",
+  "text"
+);
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
+// Stop copying at the line above
+
+// import bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
